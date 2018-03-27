@@ -14,8 +14,13 @@ inputs = [
 
 tpu_computation = tpu.rewrite(axy_computation, inputs)
 
+tpu_name = os.environ['TPU_NAME']
+print('TPU_NAME: %s' % tpu_name)
 tpu_grpc_url = os.environ['TPU_GRPC_URL']
-print(tpu_grpc_url)
+print('TPU_GRPC_URL: %s' % tpu_grpc_url)
+tpu_model_dir = os.environ['TPU_MODEL_DIR']
+print('TPU_MODEL_DIR: %s' % tpu_model_dir)
+
 with tf.Session(tpu_grpc_url) as sess:
   sess.run(tpu.initialize_system())
   sess.run(tf.global_variables_initializer())
